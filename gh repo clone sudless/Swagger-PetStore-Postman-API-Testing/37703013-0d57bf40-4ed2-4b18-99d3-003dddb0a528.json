@@ -1,0 +1,1186 @@
+{
+	"info": {
+		"_postman_id": "37703013-0d57bf40-4ed2-4b18-99d3-003dddb0a528",
+		"name": "Petstore",
+		"description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.\n\nContact Support:\n Email: apiteam@swagger.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "createWithList",
+					"item": [
+						{
+							"name": "Creates list of users with given input array",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "dd79349a-0685-4046-8e6a-53e43e5fb183"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let rawBody = pm.request.body.raw;",
+											"",
+											"try {",
+											"    let users = JSON.parse(rawBody);",
+											"",
+											"    // Set first user's data",
+											"    pm.environment.set(\"user1_id\", users[0].id);",
+											"    pm.environment.set(\"user1_username\", users[0].username);",
+											"    pm.environment.set(\"user1_firstname\", users[0].firstName);",
+											"    pm.environment.set(\"user1_lastname\", users[0].lastName);",
+											"    pm.environment.set(\"user1_email\", users[0].email);",
+											"    pm.environment.set(\"user1_password\", users[0].password);",
+											"    pm.environment.set(\"user1_phone\", users[0].phone);",
+											"    pm.environment.set(\"user1_status\", users[0].userStatus);",
+											"",
+											"    pm.environment.set(\"user2_id\", users[1].id);",
+											"    pm.environment.set(\"user2_username\", users[1].username);",
+											"    pm.environment.set(\"user2_firstname\", users[1].firstName);",
+											"    pm.environment.set(\"user2_lastname\", users[1].lastName);",
+											"    pm.environment.set(\"user2_email\", users[1].email);",
+											"    pm.environment.set(\"user2_password\", users[1].password);",
+											"    pm.environment.set(\"user2_phone\", users[1].phone);",
+											"    pm.environment.set(\"user2_status\", users[1].userStatus);",
+											"",
+											"} catch (e) {",
+											"    console.log(\"Failed to parse or store user data:\", e);",
+											"}",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Body matches message ok\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"ok\");",
+											"});",
+											"",
+											"pm.test(\"Body matches type unknown\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"unknown\");",
+											"});",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "bdaa5989-31bb-46ef-95f1-802361a1845b"
+									}
+								}
+							],
+							"id": "37703013-23d02e0d-4b5b-4153-93b2-e53c3e6a0029",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  {\n    \"id\": {{$randomInt}},\n    \"username\": \"{{$randomUserName}}\",\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"phone\": \"{{$randomPhoneNumber}}\",\n    \"userStatus\": {{$randomInt}}\n  },\n  {\n    \"id\": {{$randomInt}},\n   \"username\": \"{{$randomUserName}}\",\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"phone\": \"{{$randomPhoneNumber}}\",\n    \"userStatus\": {{$randomInt}}\n  }\n]",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/createWithList",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"createWithList"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "37703013-1c70c202-e21c-4a41-836c-57208e040dc9",
+									"name": "successful operation",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n  {\n    \"id\": -44892436,\n    \"username\": \"consectetur esse in eu\",\n    \"firstName\": \"esse ut pariatur\",\n    \"lastName\": \"mollit nisi nulla Ut\",\n    \"email\": \"minim officia\",\n    \"password\": \"Duis commodo\",\n    \"phone\": \"sunt in elit esse\",\n    \"userStatus\": 16452155\n  },\n  {\n    \"id\": -26651919,\n    \"username\": \"labore incididunt aute\",\n    \"firstName\": \"labore laboris officia fugiat\",\n    \"lastName\": \"dolore irure\",\n    \"email\": \"velit adipis\",\n    \"password\": \"in ullamco esse\",\n    \"phone\": \"ullamco ea est\",\n    \"userStatus\": -80375553\n  }\n]",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/user/createWithList",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"createWithList"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								},
+								{
+									"id": "37703013-c0116182-b750-4b36-9ce3-da4c070c6729",
+									"name": "Creates list of users with given input array",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n  {\n    \"id\": {{$randomInt}},\n    \"username\": \"{{$randomUserName}}\",\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"phone\": \"{{$randomPhoneNumber}}\",\n    \"userStatus\": {{$randomInt}}\n  },\n  {\n    \"id\": {{$randomInt}},\n   \"username\": \"{{$randomUserName}}\",\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"phone\": \"{{$randomPhoneNumber}}\",\n    \"userStatus\": {{$randomInt}}\n  }\n]",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/user/createWithList",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"createWithList"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Fri, 11 Jul 2025 12:27:00 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "GET, POST, DELETE, PUT"
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "Content-Type, api_key, Authorization"
+										},
+										{
+											"key": "Server",
+											"value": "Jetty(9.2.9.v20150224)"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"code\": 200,\n    \"type\": \"unknown\",\n    \"message\": \"ok\"\n}"
+								}
+							]
+						}
+					],
+					"id": "37703013-2229b7ca-06c4-4876-a1da-b19030d0c575"
+				},
+				{
+					"name": "username",
+					"item": [
+						{
+							"name": "Get user by user name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"var jsonData = pm.response.json();",
+											"",
+											"pm.test(\"Check credentials\", function () {",
+											"    pm.expect(jsonData.id).to.equal(pm.environment.get(\"user1_id\"));",
+											"    pm.expect(jsonData.username).to.equal(pm.environment.get(\"user1_username\"));",
+											"    pm.expect(jsonData.firstName).to.equal(pm.environment.get(\"user1_firstname\"));",
+											"    pm.expect(jsonData.lastName).to.equal(pm.environment.get(\"user1_lastname\"));",
+											"    pm.expect(jsonData.email).to.equal(pm.environment.get(\"user1_email\"));",
+											"    pm.expect(jsonData.password).to.equal(pm.environment.get(\"user1_password\"));",
+											"    pm.expect(jsonData.phone).to.equal(pm.environment.get(\"user1_phone\"));",
+											"    pm.expect(jsonData.userStatus).to.equal(pm.environment.get(\"user1_status\"));",
+											"",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "edd3883c-64b3-46e1-909c-57962d0359ad"
+									}
+								}
+							],
+							"id": "37703013-af68322a-2403-4631-b4b0-7f9fc6d96887",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/user/:username",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										":username"
+									],
+									"variable": [
+										{
+											"id": "9dd1de53-96fc-4b3a-b52c-66df0c29551d",
+											"key": "username",
+											"value": "{{user1_username}}",
+											"description": "(Required) The name that needs to be fetched. Use user1 for testing. "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "37703013-95ef127a-cc05-4580-b1dd-fa9a2f5946eb",
+									"name": "successful operation",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/user/:username",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username",
+													"value": "consequat amet"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"id\": 77588555,\n  \"username\": \"consequat amet \",\n  \"firstName\": \"magna deserunt velit ipsum sint\",\n  \"lastName\": \"commodo anim sed\",\n  \"email\": \"elit tempor nostrud\",\n  \"password\": \"laborum dolore et\",\n  \"phone\": \"ullamco incididunt\",\n  \"userStatus\": 1081241\n}"
+								},
+								{
+									"id": "37703013-036c37d7-6942-43e5-a82c-1bb5054cf05f",
+									"name": "Invalid username supplied",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/:username",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								},
+								{
+									"id": "37703013-811ba0bd-895c-420e-a49f-3b92448b3d43",
+									"name": "User not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/:username",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Updated user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let body = JSON.parse(pm.request.body.raw);",
+											"pm.environment.set(\"user1_phone\", body.phone);",
+											"",
+											"var jsonData = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"type is unknown\", function () {",
+											"    pm.expect(jsonData.type).to.include(\"unknown\");",
+											"});",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "91803edc-5afa-4377-8aa5-1494ddef9da3"
+									}
+								}
+							],
+							"id": "37703013-31d7c716-dd74-4f3f-b3d4-3c2da5c367f0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\n{\n\n  \"phone\": \"{{$randomPhoneNumber}}\"\n\n}\n",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/:username",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										":username"
+									],
+									"variable": [
+										{
+											"id": "5aee0c62-9d2b-4460-af16-2d0a1e934ec0",
+											"key": "username",
+											"value": "{{user1_username}}",
+											"description": "(Required) name that need to be updated"
+										}
+									]
+								},
+								"description": "This can only be done by the logged in user."
+							},
+							"response": [
+								{
+									"id": "37703013-831566b1-a36c-4aaf-9b69-8f29fc51eda9",
+									"name": "Invalid user supplied",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 77588555,\n  \"username\": \"consequat amet \",\n  \"firstName\": \"magna deserunt velit ipsum sint\",\n  \"lastName\": \"commodo anim sed\",\n  \"email\": \"elit tempor nostrud\",\n  \"password\": \"laborum dolore et\",\n  \"phone\": \"ullamco incididunt\",\n  \"userStatus\": 1081241\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/user/:username",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								},
+								{
+									"id": "37703013-dd6dc92e-e51d-4021-9d17-162941ed1366",
+									"name": "User not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 77588555,\n  \"username\": \"consequat amet \",\n  \"firstName\": \"magna deserunt velit ipsum sint\",\n  \"lastName\": \"commodo anim sed\",\n  \"email\": \"elit tempor nostrud\",\n  \"password\": \"laborum dolore et\",\n  \"phone\": \"ullamco incididunt\",\n  \"userStatus\": 1081241\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/user/:username",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Check If Updated",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"var jsonData = pm.response.json();",
+											"var updatedPhone = pm.environment.get(\"user1_phone\");",
+											"",
+											"pm.test(\"Updated phone is correct\", function () {",
+											"    pm.expect(jsonData.phone).to.eql(updatedPhone);",
+											"});",
+											"",
+											"",
+											"// Parse the response",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "e6bbc0c7-8778-4c2a-84c8-59408b3fc2e7"
+									}
+								}
+							],
+							"id": "37703013-fefd664b-3709-4bd2-8b45-2908facdfa42",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/user/:username",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										":username"
+									],
+									"variable": [
+										{
+											"id": "55c172fe-09fe-4c95-8c92-37819329b187",
+											"key": "username",
+											"value": "{{user1_username}}",
+											"description": "(Required) The name that needs to be fetched. Use user1 for testing. "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "37703013-83fe7ef5-7df6-4004-9b0c-606231b0d364",
+									"name": "successful operation",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/user/:username",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username",
+													"value": "consequat amet"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"id\": 77588555,\n  \"username\": \"consequat amet \",\n  \"firstName\": \"magna deserunt velit ipsum sint\",\n  \"lastName\": \"commodo anim sed\",\n  \"email\": \"elit tempor nostrud\",\n  \"password\": \"laborum dolore et\",\n  \"phone\": \"ullamco incididunt\",\n  \"userStatus\": 1081241\n}"
+								},
+								{
+									"id": "37703013-d07bc1b3-f1f5-4a08-9a9b-59822509b309",
+									"name": "Invalid username supplied",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/:username",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								},
+								{
+									"id": "37703013-66521f21-39d3-4aa2-adf3-93f2349535ac",
+									"name": "User not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/:username",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Delete user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response type is unknown\", function () {",
+											"    pm.expect(jsonData.type).to.include(\"unknown\");",
+											"});",
+											"",
+											"pm.test(\"Response string matches username\", function () {",
+											"    pm.expect(jsonData.message).to.equal(pm.environment.get(\"user1_username\"));",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "ba3f0fff-bd5d-4015-8a70-38e53ddd428e"
+									}
+								}
+							],
+							"id": "37703013-3420be94-93a5-49bf-86de-a9c4d73ee281",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/:username",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										":username"
+									],
+									"variable": [
+										{
+											"id": "832a07e8-2055-435c-bc1c-f8ae9c6d18d0",
+											"key": "username",
+											"value": "{{user1_username}}",
+											"description": "(Required) The name that needs to be deleted"
+										}
+									]
+								},
+								"description": "This can only be done by the logged in user."
+							},
+							"response": [
+								{
+									"id": "37703013-11512a42-ad1f-497d-ba60-cd09998df0cc",
+									"name": "Invalid username supplied",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/:username",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								},
+								{
+									"id": "37703013-15e78144-6110-48ee-8879-47c01e9d1523",
+									"name": "User not found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/:username",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												":username"
+											],
+											"variable": [
+												{
+													"key": "username"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Check If Deleted",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"User is deleted (should return 404)\", function () {",
+											"    pm.expect(pm.response.code).to.equal(404);",
+											"    const jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.eql(\"User not found\");",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "b11d38f2-55d8-4ce1-acb8-cca59b2bf298"
+									}
+								}
+							],
+							"id": "37703013-55339720-9498-459c-8451-ee6a8b010067",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/:username",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										":username"
+									],
+									"variable": [
+										{
+											"id": "dc6f2be0-d24b-4c2f-a7e0-57791b5731ab",
+											"key": "username",
+											"value": "{{user1_username}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "37703013-6b477097-03e7-4d65-bde4-0155c11456f6"
+				},
+				{
+					"name": "login",
+					"item": [
+						{
+							"name": "Logs user into the system",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"Response type check\", function () {",
+											"    pm.expect(jsonData.type).to.include(\"unknown\");",
+											"});",
+											"",
+											"pm.test(\"Response message follows correct format\", function () {",
+											"    pm.expect(jsonData.message).to.match(/^logged in user session:\\d+$/);",
+											"});",
+											"",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "cd6afae9-37e4-4965-a74d-ab3191f36dc9"
+									}
+								}
+							],
+							"id": "37703013-ab59b4c0-9cb1-4c98-b1e6-c41430815c0b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/user/login?username={{user2_username}}&password={{user2_password}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"login"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "{{user2_username}}",
+											"description": "(Required) The user name for login"
+										},
+										{
+											"key": "password",
+											"value": "{{user2_password}}",
+											"description": "(Required) The password for login in clear text"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "37703013-db2fe6bc-cbca-418c-8c49-1bcf3a37b9cf",
+									"name": "successful operation",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/user/login?username=aliqua ex anim&password=aliqua ex anim",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"login"
+											],
+											"query": [
+												{
+													"key": "username",
+													"value": "aliqua ex anim",
+													"description": "(Required) The user name for login"
+												},
+												{
+													"key": "password",
+													"value": "aliqua ex anim",
+													"description": "(Required) The password for login in clear text"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-Expires-After",
+											"value": "1997-03-05T06:29:25.128Z",
+											"description": {
+												"content": "date in UTC when token expires",
+												"type": "text/plain"
+											}
+										},
+										{
+											"key": "X-Rate-Limit",
+											"value": "-46842296",
+											"description": {
+												"content": "calls per hour allowed by the user",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "aliqua ex anim"
+								},
+								{
+									"id": "37703013-c25977d5-7bb8-46ec-8568-68babdb61f1b",
+									"name": "Invalid username/password supplied",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/login?username=aliqua ex anim&password=aliqua ex anim",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"login"
+											],
+											"query": [
+												{
+													"key": "username",
+													"value": "aliqua ex anim",
+													"description": "(Required) The user name for login"
+												},
+												{
+													"key": "password",
+													"value": "aliqua ex anim",
+													"description": "(Required) The password for login in clear text"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								}
+							]
+						}
+					],
+					"id": "37703013-f830f5a6-d884-4d1d-99a1-e88ae0d8caa5"
+				},
+				{
+					"name": "logout",
+					"item": [
+						{
+							"name": "Logs out current logged in user session",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8041e9c5-5837-4bf8-8263-bba0789eac9d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"Response type check unknown\", function () {",
+											"    pm.expect(jsonData.type).to.include(\"unknown\");",
+											"});",
+											"",
+											"pm.test(\"Response message check ok\", function () {",
+											"    pm.expect(jsonData.message).to.include(\"ok\");",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "37703013-5fa26619-ba76-4eb2-ab65-8f31be7cdf75",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"logout"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "37703013-0d23133b-9a80-4859-a98b-7be87352bbdd",
+									"name": "successful operation",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/logout",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"logout"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								}
+							]
+						}
+					],
+					"id": "37703013-9713400a-8150-4e73-8916-714e198a7619"
+				},
+				{
+					"name": "create user",
+					"item": [
+						{
+							"name": "New Request",
+							"id": "37703013-91275b65-dd24-42f6-9020-1e0ad62c60cc",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
+					"id": "37703013-25cb9e9a-2b5b-4837-94ec-6c7eb72542c0"
+				}
+			],
+			"id": "37703013-e8f03c68-ac69-46c1-8c45-3ea2e1104baf"
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://petstore.swagger.io/v2"
+		},
+		{
+			"key": "user1_phone",
+			"value": ""
+		}
+	]
+}
